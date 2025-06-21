@@ -1,0 +1,114 @@
+openapi: 3.0.3
+info:
+  title: Bank Account API
+  version: 1.0.0
+
+paths:
+  /accounts/{accountId}/deposit:
+    post:
+      operationId: depositToAccount
+      parameters:
+        - name: accountId
+          in: path
+          description: Account identifier
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Transaction"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Balance'
+        GenericError:
+          description: An error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericError"
+
+  /accounts/{accountId}/withdraw:
+    post:
+      operationId: withdrawFromAccount
+      parameters:
+        - name: accountId
+          in: path
+          description: Account identifier
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Transaction"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Balance'
+        GenericError:
+          description: An error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericError"
+
+components:
+  schemas:
+    Transaction:
+      type: object
+      required:
+        - amount
+        - currency
+        - bank
+        - ownerId
+      properties:
+        amount:
+          type: number
+          format: float
+        currency:
+          type: string
+        #####TO DELETE -  JUST TO TEST######
+        ownerId:
+          type: integer
+          format: int64
+        bank:
+          type: string
+          enum:
+            - SG
+            - CDN
+            - CA
+        ######################################
+    
+    Balance:
+      type: object
+      required:
+        - totalBalance
+        - currency
+      properties:
+        totalBalance:
+          type: number
+          format: float
+        currency:
+          type: string
+
+    GenericError:
+      type: object
+      properties:
+        message:
+          type: string
