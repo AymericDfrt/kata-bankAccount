@@ -1,11 +1,11 @@
-package fr.kata.api;
+package fr.kata.bankaccount.api;
 
-import fr.kata.api.mapper.BalanceMapper;
-import fr.kata.api.mapper.BalanceMapperImpl;
-import fr.kata.api.mapper.TransactionMapper;
-import fr.kata.api.mapper.TransactionMapperImpl;
-import fr.kata.bankAccount.database.DbBankAccountService;
-import fr.kata.bankAccount.domain.OwnerBankAccountService;
+import fr.kata.bankaccount.api.mapper.BalanceMapper;
+import fr.kata.bankaccount.api.mapper.BalanceMapperImpl;
+import fr.kata.bankaccount.api.mapper.TransactionMapper;
+import fr.kata.bankaccount.api.mapper.TransactionMapperImpl;
+import fr.kata.bankaccount.database.DbBankAccountService;
+import fr.kata.bankaccount.domain.OwnerBankAccountService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

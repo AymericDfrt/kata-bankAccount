@@ -1,4 +1,4 @@
-package fr.kata.bankAccount.database;
+package fr.kata.bankaccount.database;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,7 @@ public class DBBankAccountConfig {
 
     @Bean
     public AccountMapper accountMapper() {
-        return new AccountMapperImpl();
+        return new fr.kata.bankaccount.database.AccountMapperImpl();
     }
 
     @Bean

@@ -1,8 +1,8 @@
-package fr.kata.api;
+package fr.kata.bankaccount.api;
 
-import fr.kata.bankAccount.database.DBBankAccountException;
-import fr.kata.bankAccount.domain.OwnerBankAccountException;
-import fr.kata.bankAccount.swagger.bo.GenericError;
+import fr.kata.bankaccount.database.DBBankAccountException;
+import fr.kata.bankaccount.domain.OwnerBankAccountException;
+import fr.kata.bankaccount.swagger.bo.GenericError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

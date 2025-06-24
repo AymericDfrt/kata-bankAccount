@@ -1,6 +1,6 @@
-package fr.kata.bankAccount.database;
+package fr.kata.bankaccount.database;
 
-import fr.kata.bankAccount.domain.data.Account;
+import fr.kata.bankaccount.domain.data.Account;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -10,6 +10,6 @@ public interface AccountMapper {
     @Mapping(target = "accountId", source = "id")
     @Mapping(target = "balance.totalBalance", source = "balance")
     @Mapping(target = "balance.currency", source = "currency")
-    Account mapAccount(fr.kata.bankAccount.database.Account account);
+    Account mapAccount(fr.kata.bankaccount.database.Account account);
 
 }

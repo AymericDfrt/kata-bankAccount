@@ -1,4 +1,4 @@
-package fr.kata.bankAccount.domain.data;
+package fr.kata.bankaccount.domain.data;
 
 import lombok.Data;
 

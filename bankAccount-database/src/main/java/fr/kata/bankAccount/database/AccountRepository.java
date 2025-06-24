@@ -1,4 +1,4 @@
-package fr.kata.bankAccount.database;
+package fr.kata.bankaccount.database;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

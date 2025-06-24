@@ -1,4 +1,4 @@
-package fr.kata.bankAccount.database;
+package fr.kata.bankaccount.database;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

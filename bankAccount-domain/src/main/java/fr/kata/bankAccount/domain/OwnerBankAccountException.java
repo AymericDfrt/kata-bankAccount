@@ -1,4 +1,4 @@
-package fr.kata.bankAccount.domain;
+package fr.kata.bankaccount.domain;
 
 import lombok.Getter;
 

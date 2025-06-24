@@ -1,8 +1,8 @@
-package fr.kata.bankAccount.domain;
+package fr.kata.bankaccount.domain;
 
-import fr.kata.bankAccount.domain.data.Balance;
-import fr.kata.bankAccount.domain.data.Bank;
-import fr.kata.bankAccount.domain.data.Transaction;
+import fr.kata.bankaccount.domain.data.Balance;
+import fr.kata.bankaccount.domain.data.Bank;
+import fr.kata.bankaccount.domain.data.Transaction;
 import lombok.AllArgsConstructor;
 
 import java.math.BigDecimal;

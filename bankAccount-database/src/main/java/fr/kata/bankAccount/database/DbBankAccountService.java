@@ -1,9 +1,9 @@
-package fr.kata.bankAccount.database;
+package fr.kata.bankaccount.database;
 
 
-import fr.kata.bankAccount.domain.BankAccountService;
-import fr.kata.bankAccount.domain.OwnerBankAccountException;
-import fr.kata.bankAccount.domain.data.Bank;
+import fr.kata.bankaccount.domain.BankAccountService;
+import fr.kata.bankaccount.domain.OwnerBankAccountException;
+import fr.kata.bankaccount.domain.data.Bank;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,13 +20,13 @@ public class DbBankAccountService implements BankAccountService {
         return Bank.SG == ownerBank;
     }
 
-    public fr.kata.bankAccount.domain.data.Account getAccount(Long accountId, Long ownerId) {
-        return accountMapper.mapAccount(getAccountEntity(ownerId, accountId));
+    public fr.kata.bankaccount.domain.data.Account getAccount(Long accountId, Long ownerId) {
+        return accountMapper.mapAccount(getAccountEntity(accountId, ownerId));
     }
 
-    public fr.kata.bankAccount.domain.data.Account deposit(Long accountId, Long ownerId, BigDecimal amount) {
+    public fr.kata.bankaccount.domain.data.Account deposit(Long accountId, Long ownerId, BigDecimal amount) {
         try {
-            var account = getAccountEntity(ownerId, accountId);
+            var account = getAccountEntity(accountId, ownerId);
             var totalBalance = account.getBalance().add(amount);
             account.setBalance(totalBalance);
             accountRepository.save(account);
@@ -36,19 +36,19 @@ public class DbBankAccountService implements BankAccountService {
         }
     }
 
-    public fr.kata.bankAccount.domain.data.Account withdraw(Long accountId, Long ownerId, BigDecimal amount) {
+    public fr.kata.bankaccount.domain.data.Account withdraw(Long accountId, Long ownerId, BigDecimal amount) {
         try {
-            var account = getAccountEntity(ownerId, accountId);
+            var account = getAccountEntity(accountId, ownerId);
             var totalBalance = account.getBalance().subtract(amount);
             account.setBalance(totalBalance);
             accountRepository.save(account);
-            return getAccount(ownerId, accountId);
+            return getAccount(accountId, ownerId);
         } catch (Exception ex) {
             throw new DBBankAccountException("test", 500);
         }
     }
 
-    private Account getAccountEntity(Long ownerId, Long accountId) {
+    private Account getAccountEntity(Long accountId, Long ownerId) {
         return accountRepository.findByIdAndOwnerId(accountId, ownerId).orElseThrow(() -> new OwnerBankAccountException("Account not found", 404));
     }
 }

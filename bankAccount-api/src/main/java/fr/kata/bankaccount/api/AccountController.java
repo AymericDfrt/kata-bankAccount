@@ -1,10 +1,10 @@
-package fr.kata.api;
+package fr.kata.bankaccount.api;
 
-import fr.kata.api.mapper.BalanceMapper;
-import fr.kata.api.mapper.TransactionMapper;
-import fr.kata.bankAccount.domain.OwnerBankAccountService;
-import fr.kata.bankAccount.swagger.bo.Balance;
-import fr.kata.bankAccount.swagger.bo.Transaction;
+import fr.kata.bankaccount.api.mapper.BalanceMapper;
+import fr.kata.bankaccount.api.mapper.TransactionMapper;
+import fr.kata.bankaccount.domain.OwnerBankAccountService;
+import fr.kata.bankaccount.swagger.bo.Balance;
+import fr.kata.bankaccount.swagger.bo.Transaction;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

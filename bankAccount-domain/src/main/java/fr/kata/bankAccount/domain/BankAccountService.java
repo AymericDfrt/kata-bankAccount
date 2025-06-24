@@ -1,7 +1,7 @@
-package fr.kata.bankAccount.domain;
+package fr.kata.bankaccount.domain;
 
-import fr.kata.bankAccount.domain.data.Account;
-import fr.kata.bankAccount.domain.data.Bank;
+import fr.kata.bankaccount.domain.data.Account;
+import fr.kata.bankaccount.domain.data.Bank;
 
 import java.math.BigDecimal;
 

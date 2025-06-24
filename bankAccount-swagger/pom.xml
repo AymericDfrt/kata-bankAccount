@@ -53,7 +53,7 @@
                             <inputSpec>${project.basedir}/src/main/resources/swagger.yaml</inputSpec>
                             <generatorName>spring</generatorName>
                             <output>${project.build.directory}/generated-sources/swagger</output>
-                            <modelPackage>fr.kata.bankAccount.swagger.bo</modelPackage>
+                            <modelPackage>fr.kata.bankaccount.swagger.bo</modelPackage>
                             <generateApis>false</generateApis>
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <generateModelTests>false</generateModelTests>

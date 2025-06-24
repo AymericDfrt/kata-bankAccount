@@ -2,11 +2,11 @@ package fr.kata.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.kata.bankAccount.database.Account;
-import fr.kata.bankAccount.database.AccountRepository;
-import fr.kata.bankAccount.swagger.bo.Balance;
-import fr.kata.bankAccount.swagger.bo.GenericError;
-import fr.kata.bankAccount.swagger.bo.Transaction;
+import fr.kata.bankaccount.database.Account;
+import fr.kata.bankaccount.database.AccountRepository;
+import fr.kata.bankaccount.swagger.bo.Balance;
+import fr.kata.bankaccount.swagger.bo.GenericError;
+import fr.kata.bankaccount.swagger.bo.Transaction;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
