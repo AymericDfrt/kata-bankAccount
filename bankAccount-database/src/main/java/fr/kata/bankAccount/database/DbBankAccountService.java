@@ -24,10 +24,10 @@ public class DbBankAccountService implements BankAccountService {
         return accountMapper.mapAccount(getAccountEntity(ownerId, accountId));
     }
 
-    public fr.kata.bankAccount.domain.data.Account deposit(Long accountId, Long ownerId, Float amount) {
+    public fr.kata.bankAccount.domain.data.Account deposit(Long accountId, Long ownerId, BigDecimal amount) {
         try {
             var account = getAccountEntity(ownerId, accountId);
-            var totalBalance = account.getBalance().add(new BigDecimal(Float.toString(amount)));
+            var totalBalance = account.getBalance().add(amount);
             account.setBalance(totalBalance);
             accountRepository.save(account);
             return getAccount(accountId, ownerId);
@@ -36,10 +36,10 @@ public class DbBankAccountService implements BankAccountService {
         }
     }
 
-    public fr.kata.bankAccount.domain.data.Account withdraw(Long accountId, Long ownerId, Float amount) {
+    public fr.kata.bankAccount.domain.data.Account withdraw(Long accountId, Long ownerId, BigDecimal amount) {
         try {
             var account = getAccountEntity(ownerId, accountId);
-            var totalBalance = account.getBalance().subtract(new BigDecimal(Float.toString(amount)));
+            var totalBalance = account.getBalance().subtract(amount);
             account.setBalance(totalBalance);
             accountRepository.save(account);
             return getAccount(ownerId, accountId);

@@ -2,9 +2,11 @@ package fr.kata.bankAccount.domain;
 
 import fr.kata.bankAccount.domain.data.Balance;
 import fr.kata.bankAccount.domain.data.Bank;
+import fr.kata.bankAccount.domain.data.Transaction;
 import lombok.AllArgsConstructor;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 @AllArgsConstructor
@@ -15,31 +17,31 @@ public class OwnerBankAccountService {
      */
     private List<BankAccountService> listBankAccountService;
 
-    public Balance deposit(Long accountId, Long ownerId, Float amount, Bank ownerBank) {
-        checkValidAmount(amount);
-        var ownerBankService = getOwnerBankService(ownerBank);
-        var accountFinal = ownerBankService.deposit(accountId, ownerId, amount);
+    public Balance deposit(Long accountId, Transaction transaction) {
+        checkValidAmount(transaction.getAmount());
+        var ownerBankService = getOwnerBankService(transaction.getBank());
+        var accountFinal = ownerBankService.deposit(accountId, transaction.getOwnerId(), transaction.getAmount());
         return accountFinal.getBalance();
     }
 
-    public Balance withdraw(Long accountId, Long ownerId, Float amount, Bank ownerBank) {
-        checkValidAmount(amount);
-        var ownerBankService = getOwnerBankService(ownerBank);
-        checkAmountAuthorized(ownerBankService, accountId, ownerId, amount);
-        var accountFinal = ownerBankService.withdraw(accountId, ownerId, amount);
+    public Balance withdraw(Long accountId, Transaction transaction) {
+        checkValidAmount(transaction.getAmount());
+        var ownerBankService = getOwnerBankService(transaction.getBank());
+        checkAmountAuthorized(ownerBankService, accountId, transaction.getOwnerId(), transaction.getAmount());
+        var accountFinal = ownerBankService.withdraw(accountId, transaction.getOwnerId(), transaction.getAmount());
         return accountFinal.getBalance();
     }
 
-    private void checkValidAmount(Float amount) {
-        if (amount < 0) {
+    private void checkValidAmount(BigDecimal amount) {
+        if (amount.compareTo(new BigDecimal(BigInteger.ZERO)) < 0) {
             throw new OwnerBankAccountException("The amount cannot be negative", 400);
         }
     }
 
-    private void checkAmountAuthorized(BankAccountService ownerBankAccount, Long accountId, Long ownerId, Float amount) {
+    private void checkAmountAuthorized(BankAccountService ownerBankAccount, Long accountId, Long ownerId, BigDecimal amount) {
         var account = ownerBankAccount.getAccount(ownerId, accountId);
 
-        if (account.getBalance().getTotalBalance().subtract(new BigDecimal(Float.toString(amount))).compareTo(new BigDecimal("0")) < 0) {
+        if (account.getBalance().getTotalBalance().subtract(amount).compareTo(new BigDecimal(BigInteger.ZERO)) < 0) {
             throw new OwnerBankAccountException("The amount must not exceed the account balance", 400);
         }
     }

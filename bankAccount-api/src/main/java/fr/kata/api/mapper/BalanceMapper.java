@@ -1,4 +1,4 @@
-package fr.kata.api;
+package fr.kata.api.mapper;
 
 import fr.kata.bankAccount.swagger.bo.Balance;
 import org.mapstruct.Mapper;
