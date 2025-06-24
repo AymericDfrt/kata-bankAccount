@@ -18,14 +18,14 @@ public class AccountController {
     private final BalanceMapper balanceMapper;
 
     @PostMapping(value = "{accountId}/deposit", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Balance> depositToAccount(@PathVariable("accountId") String accountId, @RequestBody Transaction transaction) {
-        var balance = ownerBankAccountService.deposit(Long.valueOf(accountId), transaction.getOwnerId(), transaction.getAmount(), Enum.valueOf(Bank.class, transaction.getBank().name()));
+    public ResponseEntity<Balance> depositToAccount(@PathVariable("accountId") Long accountId, @RequestBody Transaction transaction) {
+        var balance = ownerBankAccountService.deposit(accountId, transaction.getOwnerId(), transaction.getAmount(), Enum.valueOf(Bank.class, transaction.getBank().name()));
         return new ResponseEntity<>(balanceMapper.map(balance), HttpStatus.OK);
     }
 
     @PostMapping(value = "{accountId}/withdraw", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Balance> withdrawFromAccount(@PathVariable("accountId") String accountId, @RequestBody Transaction transaction) {
-        var balance = ownerBankAccountService.withdraw(Long.valueOf(accountId), transaction.getOwnerId(), transaction.getAmount(), Enum.valueOf(Bank.class, transaction.getBank().name()));
+    public ResponseEntity<Balance> withdrawFromAccount(@PathVariable("accountId") Long accountId, @RequestBody Transaction transaction) {
+        var balance = ownerBankAccountService.withdraw(accountId, transaction.getOwnerId(), transaction.getAmount(), Enum.valueOf(Bank.class, transaction.getBank().name()));
         return new ResponseEntity<>(balanceMapper.map(balance), HttpStatus.OK);
     }
 }
